@@ -1,0 +1,19 @@
+interface Node {
+  id: ID!
+}
+
+interface IUser {
+  id: ID!
+  firstName: String!
+  lastName: String!
+}
+
+type User implements IUser & Node {
+  id: ID!
+  firstName: String!
+  lastName: String!
+}
+
+type Query {
+  user(id: ID!): User
+}

@@ -1,0 +1,37 @@
+{
+  "name": "appsync-typed-lambda-resolver",
+  "version": "0.0.0",
+  "private": true,
+  "license": "UNLICENSED",
+  "packageManager": "pnpm@7.27.1",
+  "type": "module",
+  "engines": {
+    "node": "18",
+    "pnpm": "7"
+  },
+  "scripts": {
+    "dev": "sst dev",
+    "build": "sst build",
+    "deploy": "sst deploy",
+    "remove": "sst remove",
+    "console": "sst console",
+    "typecheck": "tsc --noEmit",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "start": "concurrently \"sst dev --region=us-east-1\" \"graphql-codegen --watch\"  --names sst,codegen"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-resolvers": "4.0.6",
+    "@parcel/watcher": "2.4.1",
+    "@tsconfig/node18": "^18.2.2",
+    "aws-cdk-lib": "2.132.1",
+    "concurrently": "8.2.2",
+    "constructs": "10.3.0",
+    "sst": "^2.41.2",
+    "typescript": "^5.4.2"
+  },
+  "workspaces": [
+    "packages/*"
+  ]
+}

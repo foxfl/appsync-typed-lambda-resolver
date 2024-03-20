@@ -1,0 +1,21 @@
+overwrite: true
+schema:
+  - "./graphql/schema.graphql"
+  - "./appsync.graphql"
+generates:
+  ./packages/functions/graphql/types/resolvers-types.ts:
+    plugins:
+      - add:
+          content: "/* eslint-disable */\n\nimport { AppSyncResolverEvent } from 'aws-lambda';"
+      - typescript
+      - typescript-resolvers
+    config:
+      contextType: ../lambda#Context
+      customResolverFn: "(event: AppSyncResolverEvent<TArgs, TParent>, context: TContext ) => Promise<TResult> | TResult"
+      avoidOptionals:
+        - defaultValue: true
+      enumsAsTypes: true
+      maybeValue: "T extends PromiseLike<infer U> ? Promise<U | null | undefined> : T | null | undefined"
+      mappers:
+        Me: Partial<{T}>
+        User: Partial<{T}>
